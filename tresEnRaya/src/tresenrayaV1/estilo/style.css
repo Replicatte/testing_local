@@ -1,0 +1,22 @@
+#padreNuestro{
+    -fx-background-color:rgb(70,70,70);
+    
+}
+
+
+#texto_top{
+    -fx-text-fill: white;
+}
+
+#texto_top:hover{
+    -fx-text-fill: rgb(230, 249, 255);
+}
+
+.claseBoton{
+    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(0, 134, 179),rgb(0, 120, 160));
+    
+}
+
+.claseBoton:hover{
+    -fx-background-color:rgb(0, 115, 153);
+}
