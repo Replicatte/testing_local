@@ -9,11 +9,11 @@
 }
 
 #texto_top:hover{
-    -fx-text-fill: rgb(230, 249, 255);
+    -fx-text-fill: rgb(200,200,200);
 }
 
 .claseBoton{
-    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(0, 134, 179),rgb(0, 120, 160));
+    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(10, 140, 180),rgb(0, 110, 150));
     
 }
 

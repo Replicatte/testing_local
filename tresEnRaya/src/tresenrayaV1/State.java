@@ -39,4 +39,8 @@ public class State {
     public void pulsao(){
         currentState = MODO_O;
     }
+    
+    public int getState(){
+        return currentState;
+    }
 }

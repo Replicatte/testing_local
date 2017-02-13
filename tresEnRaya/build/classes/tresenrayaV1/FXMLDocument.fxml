@@ -12,7 +12,7 @@
 
 <BorderPane fx:id="padreNuestro" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tresenrayaV1.FXMLDocumentController">
     <center>
-        <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+        <GridPane alignment="CENTER" style="-fx-border-style: solid;" BorderPane.alignment="CENTER">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="150.0" />
     <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="150.0" />
@@ -26,47 +26,47 @@
   </rowConstraints>
    <children>
        
-      <Button fx:id="top_left" mnemonicParsing="false" onAction="#top_left_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.rowIndex="1">
+      <Button fx:id="top_left" mnemonicParsing="false" onAction="#top_left_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
       </Button>
-      <Button fx:id="top_center" mnemonicParsing="false" onAction="#top_center_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Button fx:id="top_center" mnemonicParsing="false" onAction="#top_center_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
       </Button>
-      <Button fx:id="top_right" mnemonicParsing="false" onAction="#top_right_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Button fx:id="top_right" mnemonicParsing="false" onAction="#top_right_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
       </Button>
-      <Button fx:id="center_left" mnemonicParsing="false" onAction="#center_left_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.rowIndex="2">
+      <Button fx:id="center_left" mnemonicParsing="false" onAction="#center_left_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.rowIndex="2">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
       </Button>
-      <Button fx:id="center_center" mnemonicParsing="false" onAction="#center_center_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Button fx:id="center_center" mnemonicParsing="false" onAction="#center_center_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
       </Button>
-      <Button fx:id="center_right" mnemonicParsing="false" onAction="#center_right_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Button fx:id="center_right" mnemonicParsing="false" onAction="#center_right_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
       </Button>
-      <Button fx:id="bottom_left" mnemonicParsing="false" onAction="#bottom_left_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.rowIndex="3">
+      <Button fx:id="bottom_left" mnemonicParsing="false" onAction="#bottom_left_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.rowIndex="3">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
       </Button>
-      <Button fx:id="bottom_center" mnemonicParsing="false" onAction="#bottom_center_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Button fx:id="bottom_center" mnemonicParsing="false" onAction="#bottom_center_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
       </Button>
-      <Button fx:id="bottom_right" mnemonicParsing="false" onAction="#bottom_right_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" text="O" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <Button fx:id="bottom_right" mnemonicParsing="false" onAction="#bottom_right_clicked" prefHeight="150.0" prefWidth="150.0" styleClass="claseBoton" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>

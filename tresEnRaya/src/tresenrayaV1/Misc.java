@@ -11,12 +11,6 @@ package tresenrayaV1;
  */
 public class Misc {
     
-    public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
-        System.out.println(""+ generaAleat(1, 2));    
-        }
-                
-    }
     
     public static int generaAleat(int max, int min){
         //Si se equivoca esto lo corrige

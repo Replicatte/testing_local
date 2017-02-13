@@ -24,8 +24,10 @@ public class TresEnRaya extends Application {
     @FXML
     public BorderPane padreNuestro;
 
+    
     @Override
     public void start(Stage stage) throws Exception {
+        
         
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -35,28 +37,27 @@ public class TresEnRaya extends Application {
         stage.setScene(scene);
         
         try {
-            stage.showingProperty().addListener(new javafx.beans.value.ChangeListener<Boolean>() {
-
-                @Override
-                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean showing) {
-                    if (showing) {
-                        stage.setMinHeight(stage.getHeight());
-                    }
-                    stage.setMinWidth(stage.getWidth());
-                    stage.setTitle("Tamaño minimo: W->" + stage.getMinWidth() + " H->" + stage.getMinHeight());
+            stage.showingProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean showing) -> {
+                if (showing) {
+                    stage.setMinHeight(stage.getHeight());
                 }
+                stage.setMinWidth(stage.getWidth());
+                stage.setTitle("Tamaño minimo: Ancho->" + stage.getMinWidth() + " Alto->" + stage.getMinHeight());
             });
         }catch(Exception e){
-            System.out.println("SIDA.");
+            System.out.println("No funciono el set de tamaño minimo D:");
         }
         //stage.minWidthProperty().bind(padreNuestro.prefWidthProperty());
         stage.show();
     }
 
+    
+       
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        GameState.initGameState();
         launch(args);
     }
 
