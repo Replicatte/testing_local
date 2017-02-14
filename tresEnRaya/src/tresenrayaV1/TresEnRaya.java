@@ -13,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -24,6 +23,7 @@ public class TresEnRaya extends Application {
     @FXML
     public BorderPane padreNuestro;
 
+    public static GameState juego;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -37,7 +37,8 @@ public class TresEnRaya extends Application {
         stage.setScene(scene);
         
         try {
-            stage.showingProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean showing) -> {
+            stage.showingProperty().addListener((ObservableValue<? extends Boolean> observable, 
+                    Boolean oldValue, Boolean showing) -> {
                 if (showing) {
                     stage.setMinHeight(stage.getHeight());
                 }
@@ -57,7 +58,7 @@ public class TresEnRaya extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GameState.initGameState();
+        juego = new GameState();
         launch(args);
     }
 

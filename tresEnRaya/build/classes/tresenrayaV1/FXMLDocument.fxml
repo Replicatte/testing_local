@@ -73,7 +73,7 @@
       </Button>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <children>
-            <Label fx:id="texto_top" alignment="CENTER" layoutX="70.0" layoutY="10.0" text="Turno x" wrapText="true">
+            <Label fx:id="texto_top" alignment="CENTER" layoutX="70.0" layoutY="10.0" text="Turno X" wrapText="true">
                <font>
                   <Font size="90.0" />
                </font>

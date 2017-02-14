@@ -36,7 +36,7 @@ public class State {
         currentState = MODO_X;
     }
     
-    public void pulsao(){
+    public void pulsaO(){
         currentState = MODO_O;
     }
     

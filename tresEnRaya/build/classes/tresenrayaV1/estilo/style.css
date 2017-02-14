@@ -13,10 +13,22 @@
 }
 
 .claseBoton{
-    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(10, 140, 180),rgb(0, 110, 150));
-    
+    -fx-body-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(10, 140, 180),rgb(0, 110, 150));
+
+    -fx-background-color: 
+       -fx-shadow-highlight-color, 
+       -fx-outer-border, 
+       -fx-inner-border, 
+       -fx-body-color;
+  -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+  -fx-background-radius: 3px, 3px, 2px, 1px;
 }
 
 .claseBoton:hover{
-    -fx-background-color:rgb(0, 115, 153);
+    -fx-body-color:rgb(0, 115, 153);
+    -fx-background-color: 
+       -fx-shadow-highlight-color, 
+       -fx-outer-border, 
+       -fx-inner-border, 
+       -fx-body-color;
 }
