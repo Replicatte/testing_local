@@ -48,8 +48,14 @@ public class FXMLDocumentController implements Initializable {
             case GameState.TURNO_X:
                 texto_top.setText("Turno X");
                 break;
+            case GameState.GANADOR_O:
+                texto_top.setText("O WINS");
+                break;
+            case GameState.GANADOR_X:
+                texto_top.setText("X WINS");
+                break;
             default:
-                System.out.println("ERROR EN LA GESTIÓN DE TURNO");
+                System.out.println("Error en el setLabel()");
         }
     }
 
@@ -64,7 +70,8 @@ public class FXMLDocumentController implements Initializable {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getTop_leftState().pulsaO();
-            } else {
+            }
+            if (juego.getTurno() == GameState.TURNO_X) {
                 juego.getTop_leftState().pulsaX();
             }
             top_left.setText(juego.getSimbTurno());
@@ -81,7 +88,8 @@ public class FXMLDocumentController implements Initializable {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getTop_centerState().pulsaO();
-            } else {
+            }
+            if (juego.getTurno() == GameState.TURNO_X) {
                 juego.getTop_centerState().pulsaX();
             }
 
@@ -99,7 +107,8 @@ public class FXMLDocumentController implements Initializable {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getTop_rightState().pulsaO();
-            } else {
+            }
+            if (juego.getTurno() == GameState.TURNO_X) {
                 juego.getTop_rightState().pulsaX();
             }
 
@@ -116,7 +125,8 @@ public class FXMLDocumentController implements Initializable {
         if (estadoBoton == State.MODO_UNSEL) {
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getCenter_leftState().pulsaO();
-            } else {
+            }
+            if (juego.getTurno() == GameState.TURNO_X) {
                 juego.getCenter_leftState().pulsaX();
             }
 
@@ -133,7 +143,8 @@ public class FXMLDocumentController implements Initializable {
         if (estadoBoton == State.MODO_UNSEL) {
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getCenter_centerState().pulsaO();
-            } else {
+            }
+            if (juego.getTurno() == GameState.TURNO_X) {
                 juego.getCenter_centerState().pulsaX();
             }
             center_center.setText(juego.getSimbTurno());
@@ -150,7 +161,8 @@ public class FXMLDocumentController implements Initializable {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getCenter_rightState().pulsaO();
-            } else {
+            }
+            if (juego.getTurno() == GameState.TURNO_X) {
                 juego.getCenter_rightState().pulsaX();
             }
             center_right.setText(juego.getSimbTurno());
@@ -166,7 +178,8 @@ public class FXMLDocumentController implements Initializable {
         if (estadoBoton == State.MODO_UNSEL) {
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getBottom_leftState().pulsaO();
-            } else {
+            }
+            if (juego.getTurno() == GameState.TURNO_X) {
                 juego.getBottom_leftState().pulsaX();
             }
             bottom_left.setText(juego.getSimbTurno());
@@ -177,6 +190,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void bottom_center_clicked(ActionEvent event) {
+
         int estadoBoton = juego.getBottom_centerState().getState();
 
         if (estadoBoton == State.MODO_UNSEL) {
@@ -184,7 +198,8 @@ public class FXMLDocumentController implements Initializable {
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getBottom_centerState().pulsaO();
             }
-            if (juego.getTurno() == GameState.TURNO_O) {
+            if (juego.getTurno() == GameState.TURNO_X) {
+                System.out.println("CLICK");
                 juego.getBottom_centerState().pulsaX();
             }
 

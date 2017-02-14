@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tresenrayaV1.menu.FXMLDocumentController">
+   <children>
+      <Pane prefHeight="100.0" prefWidth="400.0" style="-fx-background-color: rgb(40,40,40);">
+         <children>
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="400.0" text="Menu principal">
+               <font>
+                  <Font name="Impact" size="47.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#995959" />
+                        <Stop color="#da5151" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </Pane>
+      <HBox alignment="CENTER" layoutY="100.0" prefHeight="100.0" prefWidth="400.0" spacing="5.0" style="-fx-background-color: rgb(40,40,40);">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Nueva Partida">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Score (WIP)">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Salir">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

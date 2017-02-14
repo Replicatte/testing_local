@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.util.ResourceBundle;
 import sun.plugin2.message.StartAppletAckMessage;
+import tresenrayaV1.menu.menuScene;
 
 /**
  *
@@ -35,6 +36,21 @@ public class GameState {
     public static int turnoActual = -1;
 
     public GameState() {
+        turnoActual = TURNO_X;
+
+        top_leftState = new State(State.MODO_UNSEL, "11");
+        top_centerState = new State(State.MODO_UNSEL, "12");
+        top_rightState = new State(State.MODO_UNSEL, "13");
+        center_leftState = new State(State.MODO_UNSEL, "21");
+        center_centerState = new State(State.MODO_UNSEL, "22");
+        center_rightState = new State(State.MODO_UNSEL, "23");
+        bottom_leftState = new State(State.MODO_UNSEL, "31");
+        bottom_centerState = new State(State.MODO_UNSEL, "32");
+        bottom_rightState = new State(State.MODO_UNSEL, "33");
+
+    }
+
+    public void reset() {
         turnoActual = TURNO_X;
 
         top_leftState = new State(State.MODO_UNSEL, "11");
@@ -120,20 +136,99 @@ public class GameState {
         int bl = bottom_leftState.getState();
         int bc = bottom_centerState.getState();
         int br = bottom_rightState.getState();
-        
-        
+
+        //fila arriba
         if (tl == tc
                 && tc == tr) {
-            if (tr == State.MODO_O) {
+            if (tl == State.MODO_O && tc == State.MODO_O && tr == State.MODO_O) {
                 winsO();
             }
-            if (tr == State.MODO_X) {
+            if (tl == State.MODO_X && tc == State.MODO_X && tr == State.MODO_X) {
                 winsX();
             }
         }
 
+        //diagonal 1
+        if (tl == cc
+                && cc == br) {
+            if (tl == State.MODO_O && cc == State.MODO_O && br == State.MODO_O) {
+                winsO();
+            }
+            if (tl == State.MODO_X && cc == State.MODO_X && br == State.MODO_X) {
+                winsX();
+            }
+        }
+
+        //diagonal 2
+        if (tr == cc
+                && cc == bl) {
+            if (tr == State.MODO_O && cc == State.MODO_O && bl == State.MODO_O) {
+                winsO();
+            }
+            if (tr == State.MODO_X && cc == State.MODO_X && bl == State.MODO_X) {
+                winsX();
+            }
+        }
+
+        //fila abajo
+        if (bl == bc
+                && bc == br) {
+            if (bl == State.MODO_O && bc == State.MODO_O && br == State.MODO_O) {
+                winsO();
+            }
+            if (bl == State.MODO_X && bc == State.MODO_X && br == State.MODO_X) {
+                winsX();
+            }
+        }
+
+        //lateral izq
+        if (tl == cl
+                && cl == bl) {
+            if (tl == State.MODO_O && cl == State.MODO_O && bl == State.MODO_O) {
+                winsO();
+            }
+            if (tl == State.MODO_X && cl == State.MODO_X && bl == State.MODO_X) {
+                winsX();
+            }
+        }
+
+        //lateral der
+        if (tr == cr
+                && cr == br) {
+            if (tr == State.MODO_O && cr == State.MODO_O && br == State.MODO_O) {
+                winsO();
+            }
+            if (tr == State.MODO_X && cr == State.MODO_X && br == State.MODO_X) {
+                winsX();
+            }
+        }
+
+        //interior cruz vertical
+        if (tc == cc
+                && cc == bc) {
+            if (tc == State.MODO_O && cc == State.MODO_O && bc == State.MODO_O) {
+                winsO();
+            }
+            if (tc == State.MODO_X && cc == State.MODO_X && bc == State.MODO_X) {
+                winsX();
+            }
+        }
+        //interior cruz horizontal
+        if (cl == cc
+                && cc == cr) {
+            if (cl == State.MODO_O && cc == State.MODO_O && cr == State.MODO_O) {
+                winsO();
+            }
+            if (cl == State.MODO_X && cc == State.MODO_X && cr == State.MODO_X) {
+                winsX();
+            }
+        }
+
+        if (turnoActual != TURNO_X && turnoActual != TURNO_O) {
+            menuScene.enchufaMenu();
+        }
     }
-    //Hay que comprobar 6 posibles combinaciones
+    //Hay que comprobar 8 posibles combinaciones
 //        
 //        
 //        if (top_leftState.getState() != State.MODO_UNSEL) {
