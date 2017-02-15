@@ -9,8 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.util.ResourceBundle;
 import sun.plugin2.message.StartAppletAckMessage;
-import tresenrayaV1.menu.menuScene;
-
+import static tresenrayaV1.TresEnRaya.dc;
+import tresenrayaV1.menu.*;
 /**
  *
  * @author repli
@@ -26,6 +26,7 @@ public class GameState {
     private State bottom_leftState;
     private State bottom_centerState;
     private State bottom_rightState;
+    
 
     public final static int TURNO_X = 1;
     public final static int TURNO_O = 2;
@@ -62,7 +63,11 @@ public class GameState {
         bottom_leftState = new State(State.MODO_UNSEL, "31");
         bottom_centerState = new State(State.MODO_UNSEL, "32");
         bottom_rightState = new State(State.MODO_UNSEL, "33");
-
+        
+        
+        
+        dc.clearAll();
+        
     }
 
     public int pasaTurno() {
@@ -224,81 +229,26 @@ public class GameState {
             }
         }
 
-        if (turnoActual != TURNO_X && turnoActual != TURNO_O) {
-            menuScene.enchufaMenu();
-        }
+//        if (turnoActual != TURNO_X && turnoActual != TURNO_O) {
+//            MenuScene.enchufaMenu();
+//        }
     }
-    //Hay que comprobar 8 posibles combinaciones
-//        
-//        
-//        if (top_leftState.getState() != State.MODO_UNSEL) {
-//            if (top_leftState.getState() == top_centerState.getState() && top_centerState.getState() == top_rightState.getState()) {
-//                if (turnoActual == TURNO_O) {
-//                    winsO();
-//                } else {
-//                    winsX();
-//                }
-//
-//            }
-//
-//            if (top_leftState.getState() == center_leftState.getState() && center_leftState.getState() == bottom_leftState.getState()) {
-//                if (turnoActual == TURNO_O) {
-//                    winsO();
-//                } else {
-//                    winsX();
-//                }
-//
-//            }
-//
-//            if (top_leftState.getState() == center_centerState.getState() && center_centerState.getState() == bottom_rightState.getState()) {
-//                if (turnoActual == TURNO_O) {
-//                    winsO();
-//                } else {
-//                    winsX();
-//                }
-//
-//            }
-//
-//        }
-//        
-//        if (bottom_rightState.getState() != State.MODO_UNSEL) {
-//            if (bottom_rightState.getState() == center_rightState.getState() && center_rightState.getState() == top_rightState.getState()) {
-//                if (turnoActual == TURNO_O) {
-//                    winsO();
-//                } else {
-//                    winsX();
-//                }
-//
-//            }
-//            if (bottom_rightState.getState() == bottom_centerState.getState() && bottom_centerState.getState() == bottom_leftState.getState()) {
-//                if (turnoActual == TURNO_O) {
-//                    winsO();
-//                } else {
-//                    winsX();
-//                }
-//
-//            }
 
-//        if (center_centerState.getState() != State.MODO_UNSEL) {
-//            
-//            if (bottom_leftState.getState() == center_centerState.getState() && center_centerState.getState() == top_rightState.getState()) {
-//                if (turnoActual == TURNO_O) {
-//                    winsO();
-//                } else {
-//                    winsX();
-//                }
-//
-//            }
-//        }
-//    }
     private void winsO() {
         turnoActual = GANADOR_O;
         System.out.println("O WINS");
+        
+        ExecMenu em = new ExecMenu();
+        em.start();
     }
 
     private void winsX() {
         turnoActual = GANADOR_X;
         System.out.println("X WINS");
+        ExecMenu em = new ExecMenu();
+        
+        em.start();
+
     }
 
     String getSimbTurno() {
@@ -310,5 +260,7 @@ public class GameState {
         }
         return " - ";
     }
+
+   
 
 }
