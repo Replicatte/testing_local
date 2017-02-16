@@ -14,33 +14,36 @@ public class State {
     void initState() {
 
     }
-    
-    
+
     //posibles estados del boton
     public static final int MODO_X = 1;
     public static final int MODO_O = 2;
     public static final int MODO_UNSEL = 0;
-    
-    
+
     //estado de un boton
     private int currentState;
     private String id = "NULL";
-    
+
     //CONSTRUCTOR
-    public State(int modo,String nombreBoton) {
+    public State(int modo, String nombreBoton) {
         currentState = modo;
         id = nombreBoton;
     }
-    
-    public void pulsaX(){
+
+    public void setState(int modo, String nombreBoton) {
+        currentState = modo;
+        id = nombreBoton;
+    }
+
+    public void pulsaX() {
         currentState = MODO_X;
     }
-    
-    public void pulsaO(){
+
+    public void pulsaO() {
         currentState = MODO_O;
     }
-    
-    public int getState(){
+
+    public int getState() {
         return currentState;
     }
 }

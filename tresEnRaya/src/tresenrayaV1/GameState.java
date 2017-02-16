@@ -5,12 +5,11 @@
  */
 package tresenrayaV1;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import java.util.ResourceBundle;
-import sun.plugin2.message.StartAppletAckMessage;
+import tresenrayaV1.manage.GameSave;
+import static tresenrayaV1.TresEnRaya.copyStage;
 import static tresenrayaV1.TresEnRaya.dc;
 import tresenrayaV1.menu.*;
+
 /**
  *
  * @author repli
@@ -26,7 +25,6 @@ public class GameState {
     private State bottom_leftState;
     private State bottom_centerState;
     private State bottom_rightState;
-    
 
     public final static int TURNO_X = 1;
     public final static int TURNO_O = 2;
@@ -54,20 +52,19 @@ public class GameState {
     public void reset() {
         turnoActual = TURNO_X;
 
-        top_leftState = new State(State.MODO_UNSEL, "11");
-        top_centerState = new State(State.MODO_UNSEL, "12");
-        top_rightState = new State(State.MODO_UNSEL, "13");
-        center_leftState = new State(State.MODO_UNSEL, "21");
-        center_centerState = new State(State.MODO_UNSEL, "22");
-        center_rightState = new State(State.MODO_UNSEL, "23");
-        bottom_leftState = new State(State.MODO_UNSEL, "31");
-        bottom_centerState = new State(State.MODO_UNSEL, "32");
-        bottom_rightState = new State(State.MODO_UNSEL, "33");
-        
-        
-        
+        top_leftState.setState(State.MODO_UNSEL, "11");
+        top_centerState.setState(State.MODO_UNSEL, "12");
+        top_rightState.setState(State.MODO_UNSEL, "13");
+        center_leftState.setState(State.MODO_UNSEL, "21");
+        center_centerState.setState(State.MODO_UNSEL, "22");
+        center_rightState.setState(State.MODO_UNSEL, "23");
+        bottom_leftState.setState(State.MODO_UNSEL, "31");
+        bottom_centerState.setState(State.MODO_UNSEL, "32");
+        bottom_rightState.setState(State.MODO_UNSEL, "33");
+
+        copyStage.close();
         dc.clearAll();
-        
+        copyStage.show();
     }
 
     public int pasaTurno() {
@@ -129,6 +126,11 @@ public class GameState {
         return turnoActual;
     }
 
+    public boolean isActivo() {
+        return turnoActual == TURNO_O || turnoActual == TURNO_X;
+    }
+
+    //MUY MEJORABLE
     public void checkWin() {
         int tl = top_leftState.getState();
         int tc = top_centerState.getState();
@@ -236,17 +238,25 @@ public class GameState {
 
     private void winsO() {
         turnoActual = GANADOR_O;
-        System.out.println("O WINS");
         
+        System.out.println("O WINS");
         ExecMenu em = new ExecMenu();
         em.start();
+        
+//        FXMLDocumentController auxDc = new FXMLDocumentController();
+//        auxDc = dc;
+//        dc = loader.setController();
+        
+
     }
 
     private void winsX() {
         turnoActual = GANADOR_X;
+
         System.out.println("X WINS");
-        ExecMenu em = new ExecMenu();
         
+
+        ExecMenu em = new ExecMenu();
         em.start();
 
     }
@@ -260,7 +270,5 @@ public class GameState {
         }
         return " - ";
     }
-
-   
 
 }

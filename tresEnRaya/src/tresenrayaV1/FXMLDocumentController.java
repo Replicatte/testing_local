@@ -20,6 +20,21 @@ import static tresenrayaV1.TresEnRaya.juego;
  */
 public class FXMLDocumentController implements Initializable {
 
+    public void clearAll() {
+
+        top_left.setText("");
+        top_center.setText("");
+        top_right.setText("");
+        center_left.setText("");
+        center_center.setText("");
+        center_right.setText("");
+        bottom_left.setText("");
+        bottom_right.setText("");
+        bottom_center.setText("");
+
+        texto_top.setText("Turno X");
+    }
+
     @FXML
     public Button top_left;
     @FXML
@@ -66,7 +81,7 @@ public class FXMLDocumentController implements Initializable {
     private void top_left_clicked(ActionEvent event) {
         int estadoBoton = juego.getTop_leftState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getTop_leftState().pulsaO();
@@ -84,7 +99,7 @@ public class FXMLDocumentController implements Initializable {
     private void top_center_clicked(ActionEvent event) {
         int estadoBoton = juego.getTop_centerState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getTop_centerState().pulsaO();
@@ -103,7 +118,7 @@ public class FXMLDocumentController implements Initializable {
     private void top_right_clicked(ActionEvent event) {
         int estadoBoton = juego.getTop_rightState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getTop_rightState().pulsaO();
@@ -122,7 +137,7 @@ public class FXMLDocumentController implements Initializable {
     private void center_left_clicked(ActionEvent event) {
         int estadoBoton = juego.getCenter_leftState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getCenter_leftState().pulsaO();
             }
@@ -140,7 +155,7 @@ public class FXMLDocumentController implements Initializable {
     private void center_center_clicked(ActionEvent event) {
         int estadoBoton = juego.getCenter_centerState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getCenter_centerState().pulsaO();
             }
@@ -157,7 +172,7 @@ public class FXMLDocumentController implements Initializable {
     private void center_right_clicked(ActionEvent event) {
         int estadoBoton = juego.getCenter_rightState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getCenter_rightState().pulsaO();
@@ -175,7 +190,7 @@ public class FXMLDocumentController implements Initializable {
     private void bottom_left_clicked(ActionEvent event) {
         int estadoBoton = juego.getBottom_leftState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getBottom_leftState().pulsaO();
             }
@@ -193,13 +208,12 @@ public class FXMLDocumentController implements Initializable {
 
         int estadoBoton = juego.getBottom_centerState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
 
             if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getBottom_centerState().pulsaO();
             }
             if (juego.getTurno() == GameState.TURNO_X) {
-                System.out.println("CLICK");
                 juego.getBottom_centerState().pulsaX();
             }
 
@@ -214,10 +228,11 @@ public class FXMLDocumentController implements Initializable {
         // coje el estado actual del boton
         int estadoBoton = juego.getBottom_rightState().getState();
 
-        if (estadoBoton == State.MODO_UNSEL) {
+        if (estadoBoton == State.MODO_UNSEL && juego.isActivo()) {
             //si el boton no se ha emplado anteriormente
 
-            if (juego.getTurno() == GameState.TURNO_O) {//cambia el boton según el modo actual
+            //cambia el boton según el modo actual
+            if (juego.getTurno() == GameState.TURNO_O) {
                 juego.getBottom_rightState().pulsaO();
             }
 

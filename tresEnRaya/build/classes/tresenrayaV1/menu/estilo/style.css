@@ -1,0 +1,4 @@
+.claseBoton{
+    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(10, 140, 180),rgb(0, 110, 150));
+    -fx-text-fill: white;
+}

@@ -25,19 +25,24 @@ public class TresEnRaya extends Application {
 
     public static GameState juego;
     
+    public static FXMLDocumentController dc;
+
+    public static Stage copyStage;
+    
     @Override
     public void start(Stage stage) throws Exception {
         
+        //+ Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
         
-        
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-
+        Parent root = loader.load();
+        dc = loader.getController();
         Scene scene = new Scene(root, 450, 600);
 
         stage.setScene(scene);
-        
+
         try {
-            stage.showingProperty().addListener((ObservableValue<? extends Boolean> observable, 
+            stage.showingProperty().addListener((ObservableValue<? extends Boolean> observable,
                     Boolean oldValue, Boolean showing) -> {
                 if (showing) {
                     stage.setMinHeight(stage.getHeight());
@@ -45,15 +50,14 @@ public class TresEnRaya extends Application {
                 stage.setMinWidth(stage.getWidth());
                 stage.setTitle("Tamaño minimo: Ancho->" + stage.getMinWidth() + " Alto->" + stage.getMinHeight());
             });
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("No funciono el set de tamaño minimo D:");
         }
+        copyStage = stage;
         //stage.minWidthProperty().bind(padreNuestro.prefWidthProperty());
-        stage.show();
+        copyStage.show();
     }
 
-    
-       
     /**
      * @param args the command line arguments
      */
