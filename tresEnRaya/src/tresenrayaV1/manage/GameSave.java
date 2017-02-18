@@ -7,17 +7,43 @@ package tresenrayaV1.manage;
 
 import java.io.File;
 import java.util.ArrayList;
+
 /**
  *
  * @author repli
  */
-public class GameSave extends File{
-    private ArrayList datos;
+public class GameSave {
 
-    public GameSave(String pathname) {
-        super(pathname);
+    private ArrayList datos;
+    private String[] rutas;
+    private int numArchivos;
+
+    public GameSave() {
         datos = new ArrayList();
+
+        File carpeta = new File("saves/");
+        File[] listaDeArchivos = carpeta.listFiles();
+        numArchivos = listaDeArchivos.length;
+
+        rutas = new String[numArchivos];
+
     }
-    
-    
+
+    public void refrescaRutas() {
+        File carpeta = new File("saves/");
+        File[] listaDeArchivos = carpeta.listFiles();
+
+        for (int i = 0; i < listaDeArchivos.length; i++) {
+            File listaDeArchivo = listaDeArchivos[i];
+            rutas[i] = listaDeArchivo.getName();;
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+        GameSave testSave = new GameSave();
+
+        testSave.refrescaRutas();
+    }
 }

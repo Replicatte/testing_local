@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import tresenrayaV1.manage.GameSave;
 
 /**
  *
@@ -24,6 +25,7 @@ public class TresEnRaya extends Application {
     public BorderPane padreNuestro;
 
     public static GameState juego;
+    public static GameSave guardado;
     
     public static FXMLDocumentController dc;
 
@@ -63,6 +65,8 @@ public class TresEnRaya extends Application {
      */
     public static void main(String[] args) {
         juego = new GameState();
+        guardado = new GameSave();
+        guardado.refrescaRutas();
         launch(args);
     }
 
