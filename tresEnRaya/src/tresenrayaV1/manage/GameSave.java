@@ -8,7 +8,7 @@ package tresenrayaV1.manage;
 import java.io.File;
 import java.util.ArrayList;
 
-/**
+/** Un GameSave por partida al dar al boton Score, se crea un archivo.
  *
  * @author repli
  */
@@ -18,6 +18,9 @@ public class GameSave {
     private String[] rutas;
     private int numArchivos;
 
+    /* El constructor inicializa los datos sin introducir nada, también
+    * inicializa las rutas según el número de ficheros de las partidas.
+    */
     public GameSave() {
         datos = new ArrayList();
 
@@ -29,6 +32,8 @@ public class GameSave {
 
     }
 
+    /* Coje el nombre de todas la rutas existentes y las mete en rutas.
+    */
     public void refrescaRutas() {
         File carpeta = new File("saves/");
         File[] listaDeArchivos = carpeta.listFiles();

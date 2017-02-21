@@ -5,8 +5,11 @@
  */
 package tresenrayaV1;
 
+import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,7 +35,12 @@ public class FXMLDocumentController implements Initializable {
         bottom_right.setText("");
         bottom_center.setText("");
 
-        texto_top.setText("Turno X");
+        if (juego.getTurno() == GameState.TURNO_X) {
+            texto_top.setText("Turno X");
+        } else {
+            texto_top.setText("Turno O");
+        }
+
     }
 
     @FXML
@@ -248,7 +256,14 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+//        try {
+//            // TODO
+//            sleep(10000);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        setLabel(juego.getTurno());
     }
 
+    
 }

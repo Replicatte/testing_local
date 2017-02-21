@@ -35,7 +35,7 @@ public class GameState {
     public static int turnoActual = -1;
 
     public GameState() {
-        turnoActual = TURNO_X;
+        turnoActual = Misc.generaAleat(TURNO_O, TURNO_X);
 
         top_leftState = new State(State.MODO_UNSEL, "11");
         top_centerState = new State(State.MODO_UNSEL, "12");
@@ -50,7 +50,8 @@ public class GameState {
     }
 
     public void reset() {
-        turnoActual = TURNO_X;
+//        turnoActual = TURNO_X;
+        turnoActual = Misc.generaAleat(TURNO_O, TURNO_X);
 
         top_leftState.setState(State.MODO_UNSEL, "11");
         top_centerState.setState(State.MODO_UNSEL, "12");
