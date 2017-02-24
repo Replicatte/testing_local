@@ -5,30 +5,42 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_UP;
 import static org.lwjgl.opengl.GL11.glViewport;
 import org.lwjglb.engine.IGameLogic;
 import org.lwjglb.engine.Window;
+import org.lwjglb.engine.graph.Mesh;
 
 public class DummyGame implements IGameLogic {
 
     private int direction = 0;
-    
+
     private float color = 0.0f;
 
     private final Renderer renderer;
-    
+
+    private Mesh mesh;
+
     public DummyGame() {
         renderer = new Renderer();
     }
-    
+
     @Override
     public void init() throws Exception {
         renderer.init();
+        float[] positions = new float[]{
+            -0.5f, 0.5f, 0.0f,
+            -0.5f, -0.5f, 0.0f,
+            0.5f, 0.5f, 0.0f,
+            //Vertice 2
+            0.5f, 0.5f, 0.0f,
+            -0.5f, -0.5f, 0.0f,
+            0.5f, -0.5f, 0.0f,};
+        mesh = new Mesh(positions);
 
     }
-    
+
     @Override
     public void input(Window window) {
-        if ( window.isKeyPressed(GLFW_KEY_UP) ) {
+        if (window.isKeyPressed(GLFW_KEY_UP)) {
             direction = 1;
-        } else if ( window.isKeyPressed(GLFW_KEY_DOWN) ) {
+        } else if (window.isKeyPressed(GLFW_KEY_DOWN)) {
             direction = -1;
         } else {
             direction = 0;
@@ -40,14 +52,14 @@ public class DummyGame implements IGameLogic {
         color += direction * 0.01f;
         if (color > 1) {
             color = 1.0f;
-        } else if ( color < 0 ) {
+        } else if (color < 0) {
             color = 0.0f;
         }
     }
 
     @Override
     public void render(Window window) {
-        if ( window.isResized() ) {
+        if (window.isResized()) {
             glViewport(0, 0, window.getWidth(), window.getHeight());
             window.setResized(false);
         }
@@ -59,6 +71,6 @@ public class DummyGame implements IGameLogic {
     @Override
     public void cleanup() {
         renderer.cleanup();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        mesh.cleanUp();
     }
 }

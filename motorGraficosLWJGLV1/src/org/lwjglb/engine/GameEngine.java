@@ -5,6 +5,11 @@
  */
 package org.lwjglb.engine;
 
+import org.lwjglb.engine.IGameLogic;
+import org.lwjglb.engine.Timer;
+import org.lwjglb.engine.Window;
+import org.lwjglb.game.Renderer;
+
 public class GameEngine implements Runnable {
 
     public static final int TARGET_FPS = 75;
@@ -61,7 +66,9 @@ public class GameEngine implements Runnable {
 
             excp.printStackTrace();
 
-        } finally{
+        } finally {
+            
+            cleanup();
         }
 
     }
@@ -152,6 +159,10 @@ public class GameEngine implements Runnable {
 
         window.update();
 
+    }
+
+    private void cleanup() {
+        gameLogic.cleanup();
     }
 
 }

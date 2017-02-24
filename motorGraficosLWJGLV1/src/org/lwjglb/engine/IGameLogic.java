@@ -1,5 +1,7 @@
 package org.lwjglb.engine;
 
+import org.lwjglb.engine.Window;
+
 
 public interface IGameLogic {
 
