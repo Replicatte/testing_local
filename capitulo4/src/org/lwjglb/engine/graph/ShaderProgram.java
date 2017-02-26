@@ -1,5 +1,6 @@
 package org.lwjglb.engine.graph;
 
+import static java.lang.Thread.sleep;
 import static org.lwjgl.opengl.GL20.*;
 
 public class ShaderProgram {
@@ -44,7 +45,10 @@ public class ShaderProgram {
     }
 
     public void link() throws Exception {
+        
+        
         glLinkProgram(programId);
+        
         if (glGetProgrami(programId, GL_LINK_STATUS) == 0) {
             throw new Exception("Error linking Shader code: " + glGetProgramInfoLog(programId, 1024));
         }

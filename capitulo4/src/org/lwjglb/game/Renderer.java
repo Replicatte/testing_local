@@ -9,6 +9,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjglb.engine.Utils;
 import org.lwjglb.engine.Window;
 import org.lwjglb.engine.graph.ShaderProgram;
+import org.lwjglb.engine.graph.Transformation;
 
 public class Renderer {
 
@@ -18,47 +19,25 @@ public class Renderer {
 
     private ShaderProgram shaderProgram;
 
+    private final Transformation transformation;
+
+
     public Renderer() {
+        transformation = new Transformation();
     }
 
-    public void init() throws Exception {
+    public void init(Window window) throws Exception {
+        // Create shader
         shaderProgram = new ShaderProgram();
-        shaderProgram.createVertexShader(Utils.loadResource("/resources/vertex.vs"));
-        shaderProgram.createFragmentShader(Utils.loadResource("/resources/fragment.fs"));
+        shaderProgram.createVertexShader(Utils.loadResource("/vertex.vs"));
+        shaderProgram.createFragmentShader(Utils.loadResource("/fragment.fs"));
         shaderProgram.link();
-
-        float[] vertices = new float[]{
-            0.0f, 0.5f, 0.0f,
-            -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f
-        };
-
-        FloatBuffer verticesBuffer = null;
-        try {
-            verticesBuffer = MemoryUtil.memAllocFloat(vertices.length);
-            verticesBuffer.put(vertices).flip();
-
-            // Create the VAO and bind to it
-            vaoId = glGenVertexArrays();
-            glBindVertexArray(vaoId);
-
-            // Create the VBO and bint to it
-            vboId = glGenBuffers();
-            glBindBuffer(GL_ARRAY_BUFFER, vboId);
-            glBufferData(GL_ARRAY_BUFFER, verticesBuffer, GL_STATIC_DRAW);
-            // Define structure of the data
-            glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
-
-            // Unbind the VBO
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-            // Unbind the VAO
-            glBindVertexArray(0);
-        } finally {
-            if (verticesBuffer != null) {
-                MemoryUtil.memFree(verticesBuffer);
-            }
-        }
+        
+        // Create uniforms for world and projection matrices
+        shaderProgram.createUniform("projectionMatrix");
+        shaderProgram.createUniform("worldMatrix");
+        
+        window.setClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     public void clear() {

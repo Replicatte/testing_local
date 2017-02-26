@@ -79,7 +79,7 @@ public class GameEngine implements Runnable {
 
         timer.init();
 
-        gameLogic.init();
+        gameLogic.init(window);
 
     }
 
