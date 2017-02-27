@@ -43,6 +43,9 @@ public class Renderer {
         // Create uniforms for world and projection matrices
         shaderProgram.createUniform("projectionMatrix");
         shaderProgram.createUniform("worldMatrix");
+        shaderProgram.createUniform("texture_sampler");
+        
+        shaderProgram.setUniform("texture_sampler", 0);
         
         window.setClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     }

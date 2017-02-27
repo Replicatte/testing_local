@@ -14,12 +14,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
  * @author repli
  */
 public class FXMLDocumentController implements Initializable {
+    
+    @FXML
+    private AnchorPane pancho;
 
     @FXML
     private Slider slide;
@@ -33,8 +37,7 @@ public class FXMLDocumentController implements Initializable {
             public void changed(ObservableValue o, Object oldVal, Object newVal) {
                 String val = "-fx-background-color:rgb(" + newVal + "," + newVal
                         + "," + newVal + "); -fx-font-color: red";
-
-                slide.setStyle(val);
+                pancho.setStyle(val);
 
             }
         });

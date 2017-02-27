@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="pancho" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="initialjavafxapplication.FXMLDocumentController">
+<AnchorPane fx:id="pancho" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="initialjavafxapplication.FXMLDocumentController">
    <children>
       <Slider fx:id="slide" layoutX="299.0" majorTickUnit="50.0" max="255.0" maxHeight="1.7976931348623157E308" minorTickCount="1" orientation="VERTICAL" prefHeight="200.0" prefWidth="41.0" showTickLabels="true" showTickMarks="true" value="150.0" />
    </children>
