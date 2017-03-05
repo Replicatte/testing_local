@@ -1,13 +1,20 @@
 #pancho{
-    -fx-background-color:rgb(70,70,70);
+    -fx-background-color:#4c4c4c;
 
 }
 
 #gp1{
-    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(10, 110, 150),rgb(0, 90, 130));
-
+    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(0, 80, 120),rgb(0, 60, 100));
 }
-
+#panelSup{
+    -fx-background-radius: 10px;
+    -fx-background-color: #649AB4;
+}
+#bannerSup{
+    -fx-background-radius: 5px;
+    -fx-background-color: #4A6572;
+    
+}
 .button{
 
     -fx-body-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(10, 110, 150),rgb(0, 90, 130));
@@ -18,9 +25,9 @@
         -fx-outer-border, 
         -fx-inner-border, 
         -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
     -fx-background-radius: 20px;
 }
 .button:hover{
-    -fx-text-fill: rgb(200,200,200) ;
+    -fx-text-fill: rgb(220,220,220) ;
 }

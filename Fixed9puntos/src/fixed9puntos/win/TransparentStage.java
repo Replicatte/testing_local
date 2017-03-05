@@ -5,7 +5,10 @@
  */
 package fixed9puntos.win;
 
+import static fixed9puntos.FXMLDocumentController.*;
+import static fixed9puntos.Main.*;
 import static java.lang.Thread.sleep;
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.event.EventType;
 import javafx.scene.Parent;
@@ -48,14 +51,29 @@ public class TransparentStage extends Application {
             //(iii) set the stage background to transparent
             stage.initStyle(TRANSPARENT);
             stage.setAlwaysOnTop(true);
-            stage.setWidth(510);
-            stage.setHeight(60);
+
+            iv.fitWidthProperty().bind(stage.widthProperty());
+            // ratio 51 :6
+            double nuestroHeight = 60;
+            if (mainGpWidth > 510) {
+                nuestroHeight = (60 / 510)* mainGpWidth;
+
+                stage.setWidth(mainGpWidth);
+                stage.setHeight(nuestroHeight);
+
+            } else {
+                stage.setWidth(510);
+                stage.setHeight(nuestroHeight);
+            }
+
+            stage.setX(mainStageX);
+            stage.setY(mainStageY + (mainGpHeight / 2));
 
             stage.show();
 
-//            PauseTransition delay = new PauseTransition(Duration.seconds(5));
-//            delay.setOnFinished(event -> stage.close());
-//            delay.play();
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(event -> stage.close());
+            delay.play();
 
         } catch (Exception e) {
             e.printStackTrace();

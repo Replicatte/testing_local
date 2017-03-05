@@ -6,28 +6,29 @@
 package fixed9puntos;
 
 import fixed9puntos.win.TransparentStage;
-import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.DragEvent;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Effect;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Pair;
+import javafx.stage.Window;
+import javafx.util.Duration;
 
 /**
  *
@@ -39,9 +40,6 @@ public class FXMLDocumentController implements Initializable {
     private VBox pancho;
     @FXML
     private GridPane gp1;
-
-    private byte vacioX;
-    private byte vacioY;
 
     @FXML
     private Button bt1;
@@ -60,68 +58,52 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button bt8;
 
+    @FXML
+    private ImageView salida;
+    @FXML
+    private ImageView despl;
+    @FXML
+    private HBox padreNuestro;
+
+    private byte vacioX;
+    private byte vacioY;
+
+    private int contador;
+
+    //Necesario para la stage de victoria.
+    public static double mainGpWidth;
+    public static double mainGpHeight;
+    @FXML
+    private Label labelCont;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        gp1.widthProperty().addListener((obs, oldVal, newVal) -> mainGpWidth = (double) newVal);
+        gp1.heightProperty().addListener((obs, oldVal, newVal) -> mainGpHeight = (double) newVal);
+
         vacioX = 2;
         vacioY = 2;
         setUp();
-
-        // TODO
-        // GridPane.columnIndex="1" GridPane.rowIndex="1" getColumnIndex getRowIndex
-//        bt11.setOnDragDetected(new EventHandler<MouseEvent>() {
-//            public void handle(MouseEvent event) {
-//
-//                int posX = (int) ((event.getSceneX() - gp1.getLayoutX()) / (gp1.getWidth() / 3));
-//                int posY = (int) ((event.getSceneY() - gp1.getLayoutY()) / (gp1.getHeight() / 3));
-//
-//                event.consume();
-//            }
-//        });
-    }
-
-    public static void gameInit() {
-        Pair bt1 = new Pair<Integer, Integer>(0, 0);
-        Pair bt2 = new Pair<Integer, Integer>(0, 0);
-        Pair bt3 = new Pair<Integer, Integer>(0, 0);
-        Pair bt4 = new Pair<Integer, Integer>(0, 0);
-        Pair bt5 = new Pair<Integer, Integer>(0, 0);
-        Pair bt6 = new Pair<Integer, Integer>(0, 0);
-        Pair bt7 = new Pair<Integer, Integer>(0, 0);
-        Pair bt8 = new Pair<Integer, Integer>(0, 0);
-
     }
 
     @FXML
     private void mouseSoltado(MouseEvent event) {
-        if (libre(event.getSource())) {
+        if (esLibre(event.getSource()) && !hasGanado) {
             byte posMouseX = (byte) ((event.getSceneX() - gp1.getLayoutX()) / (gp1.getWidth() / 3));
             byte posMouseY = (byte) ((event.getSceneY() - gp1.getLayoutY()) / (gp1.getHeight() / 3));
 
-            System.out.println(posMouseX + " - " + posMouseY);
             Button but = (Button) event.getSource();
 
             if (posMouseX == vacioX && posMouseY == vacioY) {
 
-                System.out.println("Valid translate");
                 //FUTURE ANIMATION METHOD IN NEW THREAD(?)
-
-//                new Thread(){
-//                    @Override
-//                    public void run() {
-//                        
-//                    }
-//                    
-//                }.start();
-//                try {
-//                    sleep(500);
-//                } catch (InterruptedException ex) {
-//                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                //no se puede emplear un Thread sobre la App porque salta excepción,se pueden usar PauseTransitions!!!
                 int auxVoidX = gp1.getColumnIndex(but);
                 int auxVoidY = gp1.getRowIndex(but);
 
                 gp1.setColumnIndex(but, (int) vacioX);
                 gp1.setRowIndex(but, (int) vacioY);
+
                 //OJO de int a Byte
                 vacioX = (byte) auxVoidX;
                 vacioY = (byte) auxVoidY;
@@ -130,8 +112,8 @@ public class FXMLDocumentController implements Initializable {
                 but.setTranslateY(0);
 
                 checkWin();
+                gestionContador(1);
             } else {
-
                 but.setTranslateX(0);
                 but.setTranslateY(0);
             }
@@ -142,7 +124,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void mouseArrastrado(MouseEvent event) {
-        if (libre(event.getSource())) {
+        if (esLibre(event.getSource()) && !hasGanado) {
 
             //primera_vez = false;
             Button but = (Button) event.getSource();
@@ -158,7 +140,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void mouseFuera(MouseEvent event) {
-        System.out.println("MouseSale del nodo");
         Button but = (Button) event.getSource();
         but.setCursor(Cursor.DEFAULT);
         event.consume();
@@ -167,7 +148,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void mouseDentro(MouseEvent event) {
 
-        if (libre(event.getSource())) {
+        if (esLibre(event.getSource()) && !hasGanado) {
             System.out.println("Movimiento Posible:" + movPosible.name());
 
             Button but = (Button) event.getSource();
@@ -181,12 +162,13 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void mousePressionado(MouseEvent event) {
-        if (libre(event.getSource())) {
-            System.out.println("MousePresionado");
+        if (esLibre(event.getSource()) && !hasGanado) {
 
             baseX = event.getSceneX();
             baseY = event.getSceneY();
         }
+        event.consume();
+
     }
 
     private boolean ganado() {
@@ -196,22 +178,7 @@ public class FXMLDocumentController implements Initializable {
     private void setUp() {
         gp1.getChildren().remove(0, 8);
 
-//        Button bt2 = new Button();
-//        bt2.setText("2");
-//        bt2.setOnKeyPressed(bt1.getOnKeyPressed());
-//        bt2.setOnMouseEntered(bt1.getOnMouseEntered());
-//        bt2.setOnMouseDragged(bt1.getOnMouseDragged());
-//        bt2.setPrefHeight(bt1.getPrefHeight());
-//        bt2.setPrefWidth(bt1.getPrefWidth());
-//        bt2.setStyle(bt1.getStyle());
-//        bt2.setFont(bt1.getFont());
-//        (ISomething) i.getClass().getMethod("clone").invoke(i);
-//        gp1.add(bt2, 1, 1);
         int[] arrayGuay = generarVectorAleatorio();
-        for (int i = 0; i < arrayGuay.length; i++) {
-            System.out.println(" Vector aleatorio: " + arrayGuay[i]);
-
-        }
 
         gp1.add(bt1, getPosX(arrayGuay, 1), getPosY(arrayGuay, 1));
         gp1.add(bt2, getPosX(arrayGuay, 2), getPosY(arrayGuay, 2));
@@ -221,7 +188,9 @@ public class FXMLDocumentController implements Initializable {
         gp1.add(bt6, getPosX(arrayGuay, 6), getPosY(arrayGuay, 6));
         gp1.add(bt7, getPosX(arrayGuay, 7), getPosY(arrayGuay, 7));
         gp1.add(bt8, getPosX(arrayGuay, 8), getPosY(arrayGuay, 8));
-
+        
+        hasGanado = false;
+        gestionContador(0);
     }
 
     private int getPosX(int[] array, int numBoton) {
@@ -239,10 +208,8 @@ public class FXMLDocumentController implements Initializable {
                 if (posicionNum == 3 || posicionNum == 6) {
                     return 2; // X = 0
                 }
-
             }
         }
-
         return -1;
     }
 
@@ -251,7 +218,6 @@ public class FXMLDocumentController implements Initializable {
         for (int i = 0; i < array.length; i++) {
             if (numBoton == array[i]) {
                 posicionNum = i + 1;
-
                 if (posicionNum == 1 || posicionNum == 2 || posicionNum == 3) {
                     return 0; // X = 0
                 }
@@ -261,7 +227,6 @@ public class FXMLDocumentController implements Initializable {
                 if (posicionNum == 7 || posicionNum == 8) {
                     return 2; // X = 0
                 }
-
             }
         }
 
@@ -270,9 +235,8 @@ public class FXMLDocumentController implements Initializable {
 
     private TipoMovimiento movPosible;
 
-    private boolean libre(Object source) {
+    private boolean esLibre(Object source) {
         Node nod = (Node) source;
-
         // da error en los nodos no libres!!!!
         //source no tiene indice de Columna!!
         final int x = gp1.getColumnIndex(nod);
@@ -305,10 +269,7 @@ public class FXMLDocumentController implements Initializable {
         setUp();
         vacioX = 2;
         vacioY = 2;
-    }
-
-    @FXML
-    private void menuClick(ActionEvent event) {
+        event.consume();
 
     }
 
@@ -345,27 +306,94 @@ public class FXMLDocumentController implements Initializable {
 
         return resultado;
     }
+    private boolean hasGanado;
 
     private void checkWin() {
-        
-        
-        Platform.runLater(new Runnable(){
-            @Override
-            public void run() {
-                TransparentStage ts = new TransparentStage();
-                ts.start(new Stage());
-            }
-            
-        });
-        
+        boolean bt1Bien = gp1.getColumnIndex(bt1) == 0 && gp1.getRowIndex(bt1) == 0;
+        boolean bt2Bien = gp1.getColumnIndex(bt2) == 1 && gp1.getRowIndex(bt2) == 0;
+        boolean bt3Bien = gp1.getColumnIndex(bt3) == 2 && gp1.getRowIndex(bt3) == 0;
+        boolean bt4Bien = gp1.getColumnIndex(bt4) == 0 && gp1.getRowIndex(bt4) == 1;
+        boolean bt5Bien = gp1.getColumnIndex(bt5) == 1 && gp1.getRowIndex(bt5) == 1;
+        boolean bt6Bien = gp1.getColumnIndex(bt6) == 2 && gp1.getRowIndex(bt6) == 1;
+        boolean bt7Bien = gp1.getColumnIndex(bt7) == 0 && gp1.getRowIndex(bt7) == 2;
+        boolean bt8Bien = gp1.getColumnIndex(bt8) == 1 && gp1.getRowIndex(bt8) == 2;
+
+        if (bt1Bien && bt2Bien && bt3Bien && bt4Bien && bt5Bien && bt6Bien && bt7Bien && bt8Bien) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    hasGanado = true;
+                    TransparentStage ts = new TransparentStage();
+                    ts.start(new Stage());
+
+                    PauseTransition delay = new PauseTransition(Duration.seconds(3));
+                    delay.setOnFinished(event -> setUp());
+
+                    delay.play();
+                }
+            });
+        }
+    }
+
+    @FXML
+    private void salirJuego(MouseEvent event) {
+        Platform.exit();
+    }
+
+    @FXML
+    private void salidaPresionada(MouseEvent event) {
+        ImageView iv = (ImageView) event.getSource();
+        iv.setScaleX(0.75);
+        iv.setScaleY(0.75);
+    }
+
+    private double offsetX;
+    private double offsetY;
+
+    @FXML
+    private void iniciaOffset(MouseEvent event) {
+        Stage stage = (Stage) padreNuestro.getScene().getWindow();
+
+        offsetX = stage.getX() - event.getScreenX();
+        offsetY = stage.getY() - event.getScreenY();
+
+    }
+
+    @FXML
+    private void arrastraVentana(MouseEvent event) {
+        ImageView iv = (ImageView) event.getSource();
+        Window window = iv.getScene().getWindow();
+
+        window.setX(event.getScreenX() - offsetX - 494);//- 494
+        window.setY(event.getScreenY() - offsetY - 83);//-83
+
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.5);
+        iv.setEffect(colorAdjust);
+    }
+
+    @FXML
+    private void finArrastraVentana(MouseEvent event) {
+        ImageView iv = (ImageView) event.getSource();
+        iv.setEffect(null);
+    }
+
+    private void gestionContador(int i) {
+        switch (i) {
+            case 0:
+                contador = 0;
+                break;
+            case 1:
+                contador++;
+                break;
+            case -1:
+                contador--;
+                break;
+        }
+        labelCont.setText("" + contador);
     }
 
     enum TipoMovimiento {
         ARRIBA, ABAJO, IZQ, DER, NADA
     };
-
-    enum EstadoPartida {
-        GANADO, JUGANDO;
-    };
-
 }
