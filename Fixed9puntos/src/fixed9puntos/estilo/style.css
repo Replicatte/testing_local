@@ -1,0 +1,26 @@
+#pancho{
+    -fx-background-color:rgb(70,70,70);
+
+}
+
+#gp1{
+    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(10, 110, 150),rgb(0, 90, 130));
+
+}
+
+.button{
+
+    -fx-body-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(10, 110, 150),rgb(0, 90, 130));
+
+    -fx-text-fill:white;
+    -fx-background-color: 
+        -fx-shadow-highlight-color, 
+        -fx-outer-border, 
+        -fx-inner-border, 
+        -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 20px;
+}
+.button:hover{
+    -fx-text-fill: rgb(200,200,200) ;
+}

@@ -24,6 +24,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle("8 Puntos - REPSTAT");
         stage.show();
     }
 
@@ -31,6 +32,16 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        //Creación sequencia juego
+        //1- genera 8 números aleatorió.
+        //2- comprueba si son validos
+        // --> 2 bucles anidados, derecha mayor izquierda
+        // --> si se da x vezes que numeros izq mayor numeros derecha, x debe ser par!!!
+        
+        
+        //estructura Vbox, stackPane amb botoons
+        
         launch(args);
     }
     
