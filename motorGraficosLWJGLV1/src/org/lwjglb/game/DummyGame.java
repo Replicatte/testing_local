@@ -30,7 +30,7 @@ public class DummyGame implements IGameLogic {
     public void init(Window window) throws Exception {
         renderer.init(window);
         // Create the Mesh
-         float[] positions = new float[]{
+        float[] positions = new float[]{
             // V0
             -0.5f, 0.5f, 0.5f,
             // V1
@@ -75,6 +75,7 @@ public class DummyGame implements IGameLogic {
             -0.5f, -0.5f, 0.5f,
             // V19: V2 repeated
             0.5f, -0.5f, 0.5f,};
+
         float[] textCoords = new float[]{
             0.0f, 0.0f,
             0.0f, 0.5f,
@@ -100,7 +101,7 @@ public class DummyGame implements IGameLogic {
             1.0f, 0.0f,
             0.5f, 0.5f,
             1.0f, 0.5f,};
-        
+
         int[] indices = new int[]{
             // Front face
             0, 1, 3, 3, 1, 2,
@@ -114,12 +115,13 @@ public class DummyGame implements IGameLogic {
             16, 18, 19, 17, 16, 19,
             // Back face
             4, 6, 7, 5, 4, 7,};
-        
+
         Texture texture = new Texture("/textures/cube_texture.png");
-        Mesh mesh = new Mesh(positions, textCoords, indices,texture);
-        GameItem gameItem = new GameItem(mesh);
-        gameItem.setPosition(0, 0, -2);
-        gameItems = new GameItem[]{gameItem};
+        Mesh mesh = new Mesh(positions, textCoords, indices, texture);
+            GameItem gameItem = new GameItem(mesh);
+            gameItem.setPosition(0, 0, -2);
+            gameItems = new GameItem[]{gameItem};
+
     }
 
     @Override
@@ -146,6 +148,7 @@ public class DummyGame implements IGameLogic {
             scaleInc = 1;
         }
     }
+    float sum = 0.5f;
 
     @Override
     public void update(float interval) {
@@ -166,7 +169,8 @@ public class DummyGame implements IGameLogic {
             gameItem.setScale(scale);
 
             // Update rotation angle
-            float sum = 1.0f;
+            float acel = 0.01f;
+            sum += acel;
             float rotation = gameItem.getRotation().x + sum;
             if (rotation > 360) {
                 rotation = 0;

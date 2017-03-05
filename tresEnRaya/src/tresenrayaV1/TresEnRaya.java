@@ -26,22 +26,23 @@ public class TresEnRaya extends Application {
 
     public static GameState juego;
     public static GameSave guardado;
-    
+
     public static FXMLDocumentController dc;
 
     public static Stage copyStage;
-    
+
     @Override
     public void start(Stage stage) throws Exception {
-        
+
         //+ Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
-        
+
         Parent root = loader.load();
         dc = loader.getController();
         Scene scene = new Scene(root, 450, 600);
 
         stage.setScene(scene);
+        stage.setTitle("Tres en raya - REPSTAT");
 
         try {
             stage.showingProperty().addListener((ObservableValue<? extends Boolean> observable,
@@ -50,7 +51,8 @@ public class TresEnRaya extends Application {
                     stage.setMinHeight(stage.getHeight());
                 }
                 stage.setMinWidth(stage.getWidth());
-                stage.setTitle("Tamaño minimo: Ancho->" + stage.getMinWidth() + " Alto->" + stage.getMinHeight());
+//                stage.setTitle("Tamaño minimo: Ancho->" + stage.getMinWidth() + " Alto->" + stage.getMinHeight());
+
             });
         } catch (Exception e) {
             System.out.println("No funciono el set de tamaño minimo D:");
