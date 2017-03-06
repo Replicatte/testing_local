@@ -18,7 +18,7 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author repli
+ * @author Alemendros Granero, Jordi (2017)
  */
 public class Main extends Application {
 

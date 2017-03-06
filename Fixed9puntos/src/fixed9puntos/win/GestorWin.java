@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author repli
+ * @author Alemendros Granero, Jordi (2017)
  */
 public class GestorWin extends Thread{
     

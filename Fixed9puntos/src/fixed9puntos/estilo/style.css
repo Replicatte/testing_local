@@ -5,6 +5,7 @@
 
 #gp1{
     -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , rgb(0, 80, 120),rgb(0, 60, 100));
+    -fx-background-radius: 20px;
 }
 #panelSup{
     -fx-background-radius: 10px;

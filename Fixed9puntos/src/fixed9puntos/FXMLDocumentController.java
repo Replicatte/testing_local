@@ -32,7 +32,7 @@ import javafx.util.Duration;
 
 /**
  *
- * @author repli
+ * @author Alemendros Granero, Jordi (2017)
  */
 public class FXMLDocumentController implements Initializable {
 
@@ -364,8 +364,8 @@ public class FXMLDocumentController implements Initializable {
         ImageView iv = (ImageView) event.getSource();
         Window window = iv.getScene().getWindow();
 
-        window.setX(event.getScreenX() - offsetX - 494);//- 494
-        window.setY(event.getScreenY() - offsetY - 83);//-83
+        window.setX(event.getScreenX() + offsetX);//- 494
+        window.setY(event.getScreenY() + offsetY);//-83
 
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.5);

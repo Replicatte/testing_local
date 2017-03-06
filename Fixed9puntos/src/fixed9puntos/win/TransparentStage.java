@@ -26,7 +26,7 @@ import javafx.util.Duration;
 
 /**
  *
- * @author repli
+ * @author Alemendros Granero, Jordi (2017)
  */
 public class TransparentStage extends Application {
 
@@ -36,19 +36,14 @@ public class TransparentStage extends Application {
             ImageView iv = new ImageView("/fixed9puntos/win/HasGanado.gif");
             VBox p = new VBox(iv);
 
-            //make the background of the label white and opaque
-            //add some borders to visualise the element' locations
 //            p.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, null)));
             Scene scene = new Scene(p);
             stage.setScene(scene);
 
-            //this is where the transparency is achieved:
-            //the three layers must be made transparent
-            //(i)  make the VBox transparent (the 4th parameter is the alpha)
             p.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
-            //(ii) set the scene fill to transparent
+            
             scene.setFill(null);
-            //(iii) set the stage background to transparent
+            
             stage.initStyle(TRANSPARENT);
             stage.setAlwaysOnTop(true);
 
